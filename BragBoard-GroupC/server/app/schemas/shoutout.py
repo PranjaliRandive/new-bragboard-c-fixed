@@ -15,4 +15,4 @@ class ShoutoutResponse(BaseModel):
     updated_at: datetime
 
     class Config:
-        from_attributes = True  # This is for Pydantic v2
+        from_attributes = True  

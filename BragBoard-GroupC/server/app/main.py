@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from app.core.database import Base, engine
 from app.api.shoutout import router as shoutout_router
+from app.api.shoutoutreaction_API import router as reaction_router
 
 # Import models to ensure they're registered
 from app.models import User, Shoutout, ShoutoutRecipient
@@ -12,6 +13,8 @@ Base.metadata.create_all(bind=engine)
 
 # Include routers
 app.include_router(shoutout_router, prefix="/shoutouts", tags=["Shoutouts"])
+app.include_router(reaction_router, prefix="/reactions", tags=["Reactions"])
+
 
 @app.get("/")
 def root():

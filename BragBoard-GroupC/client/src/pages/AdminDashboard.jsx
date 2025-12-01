@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-import Sidebar from '../layout/Sidebar';
-import Header from '../layout/Header';
-import Leaderboard from '../components/Leaderboard';
-import Analytics from '../components/Analytics';
-import UserManagement from '../components/UserManagement';
-import SearchFilters from '../components/SearchFilters';
+import Sidebar from '../layout/Admin_Sidebar';
+import Header from '../layout/Admin_Header';
+import Leaderboard from '../components/Admin_Leaderboard';
+import Analytics from '../components/Admin_Analytics';
 
 const AdminDashboard = () => {
   const [activeSection, setActiveSection] = useState('dashboard');

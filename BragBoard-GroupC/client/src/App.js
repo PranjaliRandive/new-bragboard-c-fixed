@@ -3,28 +3,91 @@ import Home from "./pages/Home";
 import AdminHome from "./pages/AdminHome";
 import Reports from "./pages/Reports";
 import Settings from "./pages/Settings";
+import ProtectedRoute from "./ProtectedRoute";
+import AdminDashboard from "./pages/AdminDashboard";
 
 export default function App() {
-  // Hardcoded role: "admin" or "user"
-  const role = "user"; // change to "user" to test user view
-
+  const role = "admin"; 
   return (
     <BrowserRouter>
       <Routes>
-        {role === "admin" ? (
-          <>
-            <Route path="/home" element={<AdminHome role={role} />} />
-            <Route path="/reports" element={<Reports role={role} />} />
-            <Route path="/settings" element={<Settings role={role} />} />
-          </>
-        ) : (
-          <>
-            <Route path="/home" element={<Home role={role} />} />
-            <Route path="/reports" element={<Reports role={role} />} />
-            <Route path="/settings" element={<Settings role={role} />} />
-          </>
-        )}
-        <Route path="*" element={role === "admin" ? <AdminHome role={role} /> : <Home role={role} />} />
+
+        {/* Admin Routes */}
+        <Route
+          path="/admin/home"
+          element={
+            <ProtectedRoute
+              element={<AdminHome role={role} />}
+              allowedRoles={["admin"]}
+              role={role}
+            />
+          }
+        />
+
+        <Route
+          path="/admin/reports"
+          element={
+            <ProtectedRoute
+              element={<Reports role={role} />}
+              allowedRoles={["admin"]}
+              role={role}
+            />
+          }
+        />
+
+        <Route
+          path="/admin/settings"
+          element={
+            <ProtectedRoute
+              element={<Settings role={role} />}
+              allowedRoles={["admin"]}
+              role={role}
+            />
+          }
+        />
+
+        {/* Employee Routes */}
+        <Route
+          path="/user/home"
+          element={
+            <ProtectedRoute
+              element={<Home role={role} />}
+              allowedRoles={["user"]}
+              role={role}
+            />
+          }
+        />
+
+        <Route
+          path="/user/reports"
+          element={
+            <ProtectedRoute
+              element={<Reports role={role} />}
+              allowedRoles={["user"]}
+              role={role}
+            />
+          }
+        />
+
+        <Route
+          path="/user/settings"
+          element={
+            <ProtectedRoute
+              element={<Settings role={role} />}
+              allowedRoles={["user"]}
+              role={role}
+            />
+          }
+        />
+
+        {/* Unauthorized Page */}
+        <Route path="/unauthorized" element={<h1>Unauthorized Access</h1>} />
+
+        {/* Default Route */}
+        <Route
+          path="*"
+          element={role === "admin" ? <AdminHome role={role} /> : <Home role={role} />}
+        />
       </Routes>
     </BrowserRouter>
   );
