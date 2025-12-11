@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const SearchFilters = () => {
+const Admin_SearchFilters = () => {
   const [searchOptions, setSearchOptions] = useState({
     byDate: false,
     byDepartmentId: false,
@@ -57,4 +57,4 @@ const SearchFilters = () => {
   );
 };
 
-export default SearchFilters;
+export default Admin_SearchFilters;

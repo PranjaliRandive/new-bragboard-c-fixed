@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Leaderboard = () => {
+const Admin_Leaderboard = () => {
   const topContributors = [
     { name: 'Camille', score: 42 },
     { name: 'Lee', score: 38 },
@@ -47,4 +47,4 @@ const Leaderboard = () => {
   );
 };
 
-export default Leaderboard;
+export default Admin_Leaderboard;

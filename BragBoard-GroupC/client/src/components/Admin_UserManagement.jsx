@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const UserManagement = () => {
+const Admin_UserManagement = () => {
   const [users, setUsers] = useState([
     { id: 1, name: 'Camille', email: 'camille@company.com', department: 'DEVELOPMENT', role: 'employee' },
     { id: 2, name: 'Lee', email: 'lee@company.com', department: 'MARKETING', role: 'employee' },
@@ -145,4 +145,4 @@ const UserManagement = () => {
   );
 };
 
-export default UserManagement;
+export default Admin_UserManagement;

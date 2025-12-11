@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Header = ({ searchQuery, setSearchQuery }) => {
+const Admin_Header = ({ searchQuery, setSearchQuery }) => {
   return (
     <header className="header">
       <div className="header-left">
@@ -16,9 +16,12 @@ const Header = ({ searchQuery, setSearchQuery }) => {
       </div>
       <div className="header-right">
         <div className="user-info">
-          <span className="user-role">Admin</span>
+          <div className="user-details">
+            <span className="user-role">Admin User</span>
+            <span className="user-role" style={{ fontSize: '11px', color: '#94a3b8' }}>Administrator</span>
+          </div>
           <div className="user-avatar">
-            <span>A</span>
+            <span>AU</span>
           </div>
         </div>
       </div>
@@ -26,4 +29,4 @@ const Header = ({ searchQuery, setSearchQuery }) => {
   );
 };
 
-export default Header;
+export default Admin_Header;

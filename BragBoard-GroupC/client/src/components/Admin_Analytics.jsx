@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Analytics = () => {
+const Admin_Analytics = () => {
   const departmentData = [
     { department: 'DEVELOPMENT', shoutouts: 40, percentage: '40%' },
     { department: 'MARKETING', shoutouts: 25, percentage: '25%' },
@@ -28,7 +28,7 @@ const Analytics = () => {
                 <div className="dept-bar">
                   <div 
                     className="bar-fill" 
-                    style={{ width: `${dept.shoutouts}%` }}
+                    style={{ width: dept.percentage }}
                   ></div>
                 </div>
                 <div className="dept-percentage">{dept.percentage}</div>
@@ -62,4 +62,4 @@ const Analytics = () => {
   );
 };
 
-export default Analytics;
+export default Admin_Analytics;
