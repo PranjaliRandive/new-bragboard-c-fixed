@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import Sidebar from '../layout/Admin_Sidebar';
-import Header from '../layout/Admin_Header';
-import Leaderboard from '../components/Admin_Leaderboard';
-import Analytics from '../components/Admin_Analytics';
-import ResolveReports from '../components/ResolveReports';
-import ReportHistory from '../components/ReportHistory';
+import Admin_Sidebar from '../layout/Admin_Sidebar';
+import Admin_Header from '../layout/Admin_Header';
+import Admin_Leaderboard from '../components/Admin_Leaderboard';
+import Admin_Analytics from '../components/Admin_Analytics';
+import Admin_UserManagement from '../components/Admin_UserManagement';
+import Admin_SearchFilters from '../components/Admin_SearchFilters';
+import '../assets/global.css';  
+
 const AdminDashboard = () => {
   const [activeSection, setActiveSection] = useState('dashboard');
   const [searchQuery, setSearchQuery] = useState('');
@@ -16,10 +18,11 @@ const AdminDashboard = () => {
           <div className="dashboard-main">
             <div className="dashboard-header">
               <h1>Welcome to Admin Dashboard!!</h1>
+              <p>Monitor and manage your organization's shoutouts and analytics</p>
             </div>
             <div className="dashboard-content">
-              <Analytics />
-              <Leaderboard />
+              <Admin_Analytics />
+              <Admin_Leaderboard />
             </div>
           </div>
         );
@@ -27,7 +30,8 @@ const AdminDashboard = () => {
         return (
           <div className="section-content">
             <h2>User Management</h2>
-            <UserManagement />
+            <p>Add, edit, and manage user accounts</p>
+            <Admin_UserManagement />
           </div>
         );
       case 'reports':
@@ -35,26 +39,9 @@ const AdminDashboard = () => {
           <div className="reports-section">
             <div className="reports-header">
               <h2>Reports Management</h2>
+              <p>Search and filter reports</p>
             </div>
-            <SearchFilters />
-          </div>
-        );
-        case 'resolve_reports':
-        return (
-          <div className="reports-section">
-            <div className="reports-header">
-              <h2>Resolve Reports</h2>
-            </div>
-            <ResolveReports />
-          </div>
-        );
-      case 'report_history':
-        return (
-          <div className="reports-section">
-            <div className="reports-header">
-              <h2>Report History</h2>
-            </div>
-            <ReportHistory />
+            <Admin_SearchFilters />
           </div>
         );
       case 'notifications':
@@ -72,18 +59,29 @@ const AdminDashboard = () => {
           </div>
         );
       default:
-        return null;
+        return (
+          <div className="dashboard-main">
+            <div className="dashboard-header">
+              <h1>Welcome to Admin Dashboard!!</h1>
+              <p>Monitor and manage your organization's shoutouts and analytics</p>
+            </div>
+            <div className="dashboard-content">
+              <Admin_Analytics />
+              <Admin_Leaderboard />
+            </div>
+          </div>
+        );
     }
   };
 
   return (
     <div className="admin-dashboard">
-      <Sidebar 
+      <Admin_Sidebar 
         activeSection={activeSection} 
         setActiveSection={setActiveSection} 
       />
       <div className="main-content">
-        <Header 
+        <Admin_Header 
           searchQuery={searchQuery} 
           setSearchQuery={setSearchQuery} 
         />

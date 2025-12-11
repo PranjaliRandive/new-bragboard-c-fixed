@@ -1,12 +1,12 @@
 import React from 'react';
 
-const Sidebar = ({ activeSection, setActiveSection }) => {
+const Admin_Sidebar = ({ activeSection, setActiveSection }) => {
   const menuItems = [
-    { key: 'dashboard', label: 'Admin Dashboard' },
-    { key: 'users', label: 'Users' },
-    { key: 'reports', label: 'Reports' },
-    { key: 'notifications', label: 'Notifications' },
-    { key: 'settings', label: 'Settings' }
+    { key: 'dashboard', label: 'Dashboard', icon: 'fa-solid fa-chart-line' },
+    { key: 'users', label: 'Users', icon: 'fa-solid fa-users' },
+    { key: 'reports', label: 'Reports', icon: 'fa-solid fa-chart-bar' },
+    { key: 'notifications', label: 'Notifications', icon: 'fa-solid fa-bell' },
+    { key: 'settings', label: 'Settings', icon: 'fa-solid fa-gear' }
   ];
 
   const departments = ['HR', 'CyberSecurity', 'Deployment'];
@@ -25,41 +25,11 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
                 className={`nav-link ${activeSection === item.key ? 'active' : ''}`}
                 onClick={() => setActiveSection(item.key)}
               >
+                <i className={item.icon}></i>
                 {item.label}
               </button>
             </li>
           ))}
-          <li className="nav-item">
-            <button
-              className={`nav-link ${activeSection === 'manage_reports' || activeSection === 'resolve_reports' || activeSection === 'report_history' ? 'active' : ''}`}
-              onClick={() => setActiveSection('manage_reports')}
-            >
-              Manage Reports
-            </button>
-            { (activeSection === 'manage_reports' || activeSection === 'resolve_reports' || activeSection === 'report_history') && (
-              <ul style={{ listStyle: 'none', paddingLeft: '12px', marginTop: '8px' }}>
-                <li style={{ marginBottom: '6px' }}>
-                  <button
-                    className={`nav-link ${activeSection === 'resolve_reports' ? 'active' : ''}`}
-                    style={{ paddingLeft: '28px', fontSize: '13px' }}
-                    onClick={() => setActiveSection('resolve_reports')}
-                  >
-                    Resolve Reports
-                  </button>
-                </li>
-                <li>
-                  <button
-                    className={`nav-link ${activeSection === 'report_history' ? 'active' : ''}`}
-                    style={{ paddingLeft: '28px', fontSize: '13px' }}
-                    onClick={() => setActiveSection('report_history')}
-                  >
-                    Report History
-                  </button>
-                </li>
-              </ul>
-            )}
-          </li>
-
         </ul>
       </nav>
 
@@ -80,4 +50,4 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
   );
 };
 
-export default Sidebar;
+export default Admin_Sidebar;
