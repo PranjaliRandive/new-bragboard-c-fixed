@@ -34,7 +34,7 @@
 }
 
 .info-box {
-  margin-right: 10px; /* space between box and heading */
+  margin-right: 10px; 
   padding: 10px 15px;
   background-color: #f0f4ff;
   border: 1px solid #007bff;
@@ -51,7 +51,7 @@
   justify-content: space-between;
 }
 
-/* ---------------------- PODIUM SECTION ---------------------- */
+/*PODIUM SECTION*/
 .podium {
   display: flex;
   justify-content: center;
@@ -92,7 +92,6 @@
   color: #4b4b4b;
 }
 
-/* Height difference effect */
 .podium-card.first {
   background: #ffd900;
   height: 160px;
@@ -104,11 +103,11 @@
 }
 
 .podium-card.third {
-  background: #cd7f32; /* bronze */
+  background: #cd7f32; 
   height: 120px;
 }
 
-/* ---------------------- TABLE ---------------------- */
+/*TABLE */
 .leaderboard-table {
   width: 100%;
   border-collapse: collapse;
