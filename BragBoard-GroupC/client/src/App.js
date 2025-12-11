@@ -27,6 +27,7 @@ export default function App() {
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/verify-otp" element={<VerifyOTP />} />
         <Route path="/reset-password" element={<ResetPassword />} />
+        <Route path="/leaderboard" element={<Leaderboard role={role} />} /> 
         {/* ---------------------- ADMIN ROUTES ---------------------- */}
         <Route path="/admin/home"
           element={ <ProtectedRoute element={<AdminHome role={role} />}allowedRoles={["admin"]}role={role}/>}
@@ -52,10 +53,6 @@ export default function App() {
           path="/admin/settings"
           element={ <ProtectedRoute element={<Settings role={role} />} allowedRoles={["admin"]} role={role} />}
         />
-        <Route /*added leaderboard here*/
-          path="/admin/leaderboard" 
-          element={<ProtectedRoute element={<Leaderboard role={role} />} allowedRoles={"admin"}} role={role} />}
-         />
         {/* ---------------------- USER ROUTES ---------------------- */}
         <Route
           path="/user/home"
@@ -70,10 +67,6 @@ export default function App() {
           path="/user/settings"
           element={<ProtectedRoute element={<Settings role={role} />}allowedRoles={["user"]} role={role} /> }
         />
-        <Route  /*added leaderboard here*/
-          path="/user/leaderboard" 
-          element={<ProtectedRoute element={<Leaderboard role={role} />} allowedRoles={"user"}} role={role} />}
-         />
         {/* ---------------------- UNAUTHORIZED ---------------------- */}
         <Route path="/unauthorized" element={<h1>Unauthorized Access</h1>} />
         {/* ---------------------- DEFAULT ROUTE ---------------------- */}
