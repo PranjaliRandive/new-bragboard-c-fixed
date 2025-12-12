@@ -1,4 +1,7 @@
-import "./Home.css";
+
+import PageContainer from "../layout/PageContainer";
+import "./EmpHome.css";
+
 import { Plus } from "lucide-react";
 
 const Home = ({ role }) => {

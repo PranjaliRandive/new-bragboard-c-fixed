@@ -1,12 +1,12 @@
 import React from 'react';
 
-const Sidebar = ({ activeSection, setActiveSection }) => {
+const Admin_Sidebar = ({ activeSection, setActiveSection }) => {
   const menuItems = [
-    { key: 'dashboard', label: 'Admin Dashboard' },
-    { key: 'users', label: 'Users' },
-    { key: 'reports', label: 'Reports' },
-    { key: 'notifications', label: 'Notifications' },
-    { key: 'settings', label: 'Settings' }
+    { key: 'dashboard', label: 'Dashboard', icon: 'fa-solid fa-chart-line' },
+    { key: 'users', label: 'Users', icon: 'fa-solid fa-users' },
+    { key: 'reports', label: 'Reports', icon: 'fa-solid fa-chart-bar' },
+    { key: 'notifications', label: 'Notifications', icon: 'fa-solid fa-bell' },
+    { key: 'settings', label: 'Settings', icon: 'fa-solid fa-gear' }
   ];
 
   const departments = ['HR', 'CyberSecurity', 'Deployment'];
@@ -25,6 +25,7 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
                 className={`nav-link ${activeSection === item.key ? 'active' : ''}`}
                 onClick={() => setActiveSection(item.key)}
               >
+                <i className={item.icon}></i>
                 {item.label}
               </button>
             </li>
@@ -49,4 +50,4 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
   );
 };
 
-export default Sidebar;
+export default Admin_Sidebar;
