@@ -1,5 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { getUserRole } from "./utils/auth";
+import { Navigate } from "react-router-dom";
 import Base from "./pages/Base";
 import Login from "./pages/Login";
 import ForgotPassword from "./pages/ForgotPassword";
@@ -9,7 +11,7 @@ import Home from "./pages/EmpHome";
 import AdminHome from "./pages/AdminHome";
 import Reports from "./pages/Reports";
 import Settings from "./pages/Settings";
-import Leaderboard from './pages/Leaderboard'; 
+import Leaderboard from './pages/Leaderboard';
 import ProtectedRoute from "./ProtectedRoute";
 import AdminDashboard from "./pages/AdminDashboard";
 
@@ -19,13 +21,13 @@ import ResolveReports from "./components/ResolveReports.jsx";
 import ReportHistory from "./components/ReportHistory.jsx";
 
 export default function App() {
-  const role = "user"; 
+  const role = getUserRole();
 
   return (
     <Router>
       <Routes>
 
-        
+
 
         {/* ---------------------- COMMON ROUTES ---------------------- */}
         <Route path="/" element={<Base />} />
@@ -33,57 +35,99 @@ export default function App() {
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/verify-otp" element={<VerifyOTP />} />
         <Route path="/reset-password" element={<ResetPassword />} />
-        <Route path="/leaderboard" element={<Leaderboard role={role} />} /> 
+
+        <Route path="/leaderboard" element={<Leaderboard role={role} />} />
+
         {/* ---------------------- ADMIN ROUTES ---------------------- */}
-        <Route path="/admin/home"
-          element={ <ProtectedRoute element={<AdminHome role={role} />}allowedRoles={["admin"]}role={role}/>}
+        <Route
+          path="/admin/home"
+          element={
+            <ProtectedRoute
+              element={<AdminHome />}
+              allowedRoles={["admin"]}
+            />
+          }
         />
 
         <Route
           path="/admin/dashboard"
-          element={<ProtectedRoute element={<AdminDashboard role={role} />} allowedRoles={["admin"]} role={role}/>}
+          element={
+            <ProtectedRoute
+              element={<AdminDashboard />}
+              allowedRoles={["admin"]}
+            />
+          }
         />
+
         <Route
           path="/admin/reports/resolve"
-          element={<ProtectedRoute element={<ResolveReports role={role} />} allowedRoles={["admin"]} role={role} />}
+          element={
+            <ProtectedRoute
+              element={<ResolveReports />}
+              allowedRoles={["admin"]}
+            />
+          }
         />
-       <Route
+
+        <Route
           path="/admin/reports/history"
-          element={ <ProtectedRoute element={<ReportHistory role={role} />} allowedRoles={["admin"]} role={role}/>}
+          element={
+            <ProtectedRoute
+              element={<ReportHistory />}
+              allowedRoles={["admin"]}
+            />
+          }
         />
+
         <Route
           path="/admin/reports"
-          element={ <ProtectedRoute  element={<Reports role={role} />}  allowedRoles={["admin"]} role={role} />}
+          element={
+            <ProtectedRoute
+              element={<Reports />}
+              allowedRoles={["admin"]}
+            />
+          }
         />
+
         <Route
           path="/admin/settings"
-          element={ <ProtectedRoute element={<Settings role={role} />} allowedRoles={["admin"]} role={role} />}
+          element={
+            <ProtectedRoute
+              element={<Settings />}
+              allowedRoles={["admin"]}
+            />
+          }
         />
 
 
         {/* ---------------- USER DASHBOARD LAYOUT ---------------- */}
-      <Route
-  path="/user"
-  element={
-    <ProtectedRoute
-      element={<PageContainer role={role} />}
-      allowedRoles={["user"]}
-      role={role}
-    />
-  }
->
-  <Route path="home" element={<Home role={role} />} />
-  <Route path="reports" element={<Reports role={role} />} />
-  <Route path="settings" element={<Settings role={role} />} />
-  <Route path="my-shoutouts" element={<MyShoutouts role={role} />} />
-</Route>
+        <Route
+          path="/user"
+          element={
+            <ProtectedRoute
+              element={<PageContainer />}
+              allowedRoles={["employee"]}
+            />
+          }
+        >
+          <Route path="home" element={<Home />} />
+          <Route path="reports" element={<Reports />} />
+          <Route path="settings" element={<Settings />} />
+          <Route path="my-shoutouts" element={<MyShoutouts />} />
+        </Route>
 
         {/* ---------------------- UNAUTHORIZED ---------------------- */}
         <Route path="/unauthorized" element={<h1>Unauthorized Access</h1>} />
         {/* ---------------------- DEFAULT ROUTE ---------------------- */}
         <Route
           path="*"
-          element={role === "admin" ? <AdminHome role={role} /> : <Home role={role} />}
+          element={
+            getUserRole() === "admin" ? (
+              <Navigate to="/admin/dashboard" replace />
+            ) : (
+              <Navigate to="/user/home" replace />
+            )
+          }
         />
       </Routes>
     </Router>

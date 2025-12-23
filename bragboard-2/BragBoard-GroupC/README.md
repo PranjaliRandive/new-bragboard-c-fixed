@@ -21,5 +21,5 @@ from fastapi import FastAPI
 app = FastAPI()
 
 @app.get("/") def home(): return {"message": "Backend is running!"} 
-8. run uvicorn app.main:app --reload 
+8. run uvicorn app.main:app --host 127.0.0.1 --port 8000 --reload 
 9. navigate to http://127.0.0.1:8000/

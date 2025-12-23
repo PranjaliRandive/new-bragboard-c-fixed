@@ -1,5 +1,7 @@
 from sqlalchemy import Column, Integer, String
-from app.core.database import Base, engine
+from sqlalchemy import Enum
+from app.core.database import UserRole
+from app.core.database import Base
 from sqlalchemy.orm import relationship
 
 class User(Base):
@@ -9,5 +11,5 @@ class User(Base):
     name = Column(String, nullable=False)
     email = Column(String, unique=True, index=True, nullable=False)
     hashed_password = Column(String, nullable=False)
-    role = Column(String, default="employee")  # employee/admin
-    leaderboard = relationship("Leaderboard", back_populates="user", uselist=False)
+    role = Column(Enum(UserRole), default=UserRole.EMPLOYEE, nullable=False)
+    leaderboard = relationship("Leaderboard", back_populates="user")
